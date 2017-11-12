@@ -5,5 +5,5 @@ session_start();
 $user_id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_URL);
 $user_password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_URL);
 $_SESSION['user_id'] = $user_id;
-header('Location: ./menu.php');
+header('Location: /views/menu.php');
 exit();
