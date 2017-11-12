@@ -13,7 +13,7 @@
         console.log("patientIdReturnHandler : output : " + output);
         var json = JSON.parse(output);
         console.log("json : " + json);
-        if (json !== undefined && json !== null) {
+        if (json !== undefined && json !== null && json !== "") {
             var input = {rfid: json};
             $.post('/ajax/ajax_saisie_acces.php',
                     input, rfidReturnSaisieHandler);
