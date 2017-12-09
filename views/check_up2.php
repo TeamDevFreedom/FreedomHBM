@@ -1,6 +1,8 @@
-<?php require_once 'header.php'; ?>
+<?php 
+require_once 'header.php'; 
+require_once '../controllers/check_login.php';
+?>
 <?php
-session_start();
 $patient_id = $_SESSION['patient_rfid'];
 $etat_patient = filter_input(INPUT_GET, 'etat', FILTER_SANITIZE_URL);
 

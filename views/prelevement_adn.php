@@ -1,4 +1,7 @@
-<?php require_once 'header.php'; ?>
+<?php 
+require_once 'header.php'; 
+require_once '../controllers/check_login.php';
+?>
 <script>
     var redirectHandler = function (url) {
             window.location.href = url;
