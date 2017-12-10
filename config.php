@@ -1,4 +1,10 @@
 <?php
+// Configuration de la  base de données
+$DB_STRING      = "mysql:host=localhost;dbname=tlo;charset=utf8";
+$DB_LOGIN       = "root";
+$DB_PASSWORD    = "";
+
+//Configuration des utilisateurs : qui a accès à quel menu, et les mots de passe.
 $STANDARD_MENU = 'STANDARD';
 $ADN_MENU = 'ADN';
 

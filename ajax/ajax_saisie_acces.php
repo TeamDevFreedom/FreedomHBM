@@ -1,9 +1,10 @@
 <?php
-require_once 'ajax_utils.php';
 require_once '../controllers/check_login.php';
+require_once 'ajax_utils.php';
+require_once '../db.php';
+
 $rfid_saisie = filter_input(INPUT_POST, 'rfid', FILTER_SANITIZE_URL);
 try {
-    $db = new PDO("mysql:host=localhost;dbname=tlo;charset=utf8", "root", "");
     $query = $db->prepare("select * from patients where rfid = ?");
     $query->execute(array($rfid_saisie));
     //Pas de while car on attend un résultat unique
