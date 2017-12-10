@@ -24,6 +24,7 @@ require_once '../controllers/check_login.php';
     };
 
     var rfidReturnSaisieHandler = function (output) {
+        alert(output);
         var json = JSON.parse(output);
         $('#form_saisie_acces').hide();
         $('#nom_patient').text("Patient : " + json.nom_patient);
