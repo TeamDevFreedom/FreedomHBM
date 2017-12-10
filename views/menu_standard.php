@@ -1,6 +1,8 @@
-<?php 
-require_once 'header.php'; 
+<?php
+
 require_once '../controllers/check_login.php';
+require_once 'header.php';
+require_once '../ajax/ajax_utils.php';
 ?>
 <script>
     var isAccesSaisi = false;
@@ -24,12 +26,23 @@ require_once '../controllers/check_login.php';
     };
 
     var rfidReturnSaisieHandler = function (output) {
-        alert(output);
         var json = JSON.parse(output);
-        $('#form_saisie_acces').hide();
-        $('#nom_patient').text("Patient : " + json.nom_patient);
-        $('#nom_patient').show();
-        isAccesSaisi = true;
+        switch (json.status) {
+            case AJAX_SUCCESS :
+                $('#form_saisie_acces').hide();
+                $('#error').hide();
+                $('#nom_patient').text("Patient : " + json.nom_patient);
+                $('#nom_patient').show();
+                isAccesSaisi = true;
+                break;
+            case AJAX_FAILURE :
+                $('#error').text(json.message);
+                $('#error').show();
+                break;
+            case AJAX_ERROR :
+                alert(json.message);
+                break;
+        }
     };
 
     var rfidSaisieHandler = function () {
@@ -71,6 +84,7 @@ require_once '../controllers/check_login.php';
     <input id="rfid" type="text"/>
 </form>
 <span id="nom_patient"></span>
+<span id="error"></span>
 <ul>
     <li id="check_up">Check-up</li>
     <li id="diagnostic">Diagnostic</li>

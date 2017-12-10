@@ -6,5 +6,6 @@
         <title>HBM</title>
         <!--<link rel="stylesheet" href="style.css">-->
         <script src="/js/jquery.js"></script>
+        <script src="/js/ajax_utils.js"></script>
     </head>
     <body>
