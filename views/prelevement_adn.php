@@ -9,7 +9,7 @@ require_once '../controllers/check_login.php';
 
     var documentReadyHandler = function () {
         $('#prelever').click(function () {
-            alert("Lancement de l'animation prélèvement ADN, puis affichage des 4 lettres du résultat");
+            window.location.href = "prelevement_adn_resultat.php";
         });
     };
     $(document).ready(documentReadyHandler);
