@@ -12,7 +12,11 @@ try {
     //Pas de while car on attend un résultat unique
     $resultat = $query->fetch(PDO::FETCH_OBJ);
     if ($resultat) {
-        $diagnostic = $resultat->diagnostic_maladie;
+        if($resultat->sexe == 'F'){
+            $diagnostic = $resultat->test_grossesse;
+        }else{
+            $diagnostic = 'Erreur : sexe incorrect';
+        }
     } else {
         //Erreur : patient non trouvé : on redirige vers la page d'accueil
         header('Location: /views/home.php');
@@ -22,6 +26,6 @@ try {
     echo $e->getMessage();
 }
 
-echo "Résultat de la recherche de maladies : " . $diagnostic . "<br/>";
+echo "Résultat du test de grossesse : " . $diagnostic . "<br/>";
 
 require_once 'footer.php';

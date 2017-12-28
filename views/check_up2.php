@@ -3,8 +3,6 @@
 require_once 'header.php';
 require_once '../controllers/check_login.php';
 require_once '../db.php';
-?>
-<?php
 
 function generer_systole($etat_patient) {
     switch ($etat_patient) {
@@ -70,8 +68,8 @@ try {
                 break;
         }
     } else {
-        //FIXME : redirection vers la page d'accueil
-        echo "Erreur : patient non reconnu";
+        //Erreur : patient non trouvé : on redirige vers la page d'accueil
+        header('Location: /views/home.php');
     }
     $query->closeCursor();
 } catch (PDOException $e) {
@@ -83,7 +81,5 @@ echo "Etat : " . $infos_etat . "<br/>";
 echo "Tension : " . $tension . "<br/>";
 echo "Groupe sanguin : " . $resultat->groupe_sanguin . "<br/>";
 echo "Informations sanguines : " . $resultat->infos_sang . "<br/>";
-?>
-<?php
 
 require_once 'footer.php';

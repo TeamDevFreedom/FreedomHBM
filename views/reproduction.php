@@ -9,10 +9,10 @@ require_once '../controllers/check_login.php';
 
     var documentReadyHandler = function () {
         $('#spermogramme').click(function () {
-            alert("Lancement de l'animation spermogramme puis redirection vers page de résultat");
+            redirectHandler('spermogramme.php');
         });
-         $('#test_grossesse').click(function () {
-            alert("Lancement de l'animation test de grossesse puis redirection vers page de résultat");
+        $('#test_grossesse').click(function () {
+            redirectHandler('test_grossesse.php');
         });
     };
     $(document).ready(documentReadyHandler);
@@ -21,4 +21,4 @@ require_once '../controllers/check_login.php';
     <li id="spermogramme">Spermogramme</li>
     <li id="test_grossesse">Test de grossesse</li>
 </ul>
-<?php require_once 'footer.php'; ?>
+<?php require_once 'footer.php';
