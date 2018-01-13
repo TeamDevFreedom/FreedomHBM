@@ -23,5 +23,5 @@ try {
 }
 
 echo "Résultat de la recherche par imagerie : " . $diagnostic . "<br/>";
-
+echo "<script>play_anim(ANIM_CODE_DIAGNOSTIC_IMAGERIE)</script>";
 require_once 'footer.php';

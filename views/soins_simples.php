@@ -9,16 +9,16 @@ require_once '../controllers/check_login.php';
 
     var documentReadyHandler = function () {
         $('#antidouleurs').click(function () {
-            alert("Lancement de l'animation injection antidouleur");
+            play_anim(ANIM_CODE_SOINS_ANTIDOULEURS);
         });
         $('#antibiotiques').click(function () {
-            alert("Lancement de l'animation injection antibiotiques");
+            play_anim(ANIM_CODE_SOINS_ANTIBIOTIQUES);
         });
         $('#inhalations').click(function () {
-            alert("Lancement de l'animation inhalations");
+            play_anim(ANIM_CODE_SOINS_INHALATIONS);
         });
          $('#prise_sang').click(function () {
-            alert("Lancement de l'animation prise de sang");
+            play_anim(ANIM_CODE_SOINS_PRISE_SANG);
         });
     };
     $(document).ready(documentReadyHandler);

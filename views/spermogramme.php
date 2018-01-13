@@ -27,5 +27,5 @@ try {
 }
 
 echo "Résultat du spermogramme : " . $diagnostic . "<br/>";
-
+echo "<script>play_anim(ANIM_CODE_SPERMOGRAMME)</script>";
 require_once 'footer.php';

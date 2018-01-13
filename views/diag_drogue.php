@@ -23,5 +23,5 @@ try {
 }
 
 echo "Résultat de la recherche de drogues : " . $diagnostic . "<br/>";
-
+echo "<script>play_anim(ANIM_CODE_DIAGNOSTIC_DROGUE)</script>";
 require_once 'footer.php';

@@ -1,18 +1,19 @@
-<?php 
-require_once 'header.php'; 
+<?php
+
+require_once 'header.php';
 require_once '../controllers/check_login.php';
 ?>
 <script>
     var redirectHandler = function (url) {
-            window.location.href = url;
+        window.location.href = url;
     };
 
     var documentReadyHandler = function () {
         $('#desinfection').click(function () {
-            redirectHandler('chir_desinfection.php');
+            play_anim(ANIM_CODE_CHIR_DESINFECTION);
         });
         $('#prelevement_tissus').click(function () {
-            redirectHandler('chir_prelevement_tissus.php');
+            play_anim(ANIM_CODE_CHIR_PRELEVEMENTS);
         });
         $('#intructions_chirurgie').click(function () {
             redirectHandler('chir_instructions.php');

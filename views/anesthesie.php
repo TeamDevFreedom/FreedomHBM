@@ -9,7 +9,7 @@ require_once '../controllers/check_login.php';
 
     var documentReadyHandler = function () {
         $('#anesthesie').click(function () {
-            alert("Lancement de l'animation anesthesie");
+            play_anim(ANIM_CODE_ANESTHESIE);
         });
     };
     $(document).ready(documentReadyHandler);

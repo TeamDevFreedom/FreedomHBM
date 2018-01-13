@@ -77,6 +77,8 @@ try {
 }
 $tension = generer_tension($etat_patient);
 
+echo "<script>play_anim(ANIM_CODE_CHECK_UP)</script>";
+
 echo "Etat : " . $infos_etat . "<br/>";
 echo "Tension : " . $tension . "<br/>";
 echo "Groupe sanguin : " . $resultat->groupe_sanguin . "<br/>";

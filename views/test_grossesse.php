@@ -27,5 +27,5 @@ try {
 }
 
 echo "Résultat du test de grossesse : " . $diagnostic . "<br/>";
-
+echo "<script>play_anim(ANIM_CODE_TEST_GROSSESSE)</script>";
 require_once 'footer.php';
