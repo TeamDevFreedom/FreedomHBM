@@ -35,19 +35,63 @@ require_once '../db.php';
         }
     };
     
-    var vecteurKeyUpHandler = function(){
-        
+    var creerVecteurCallback = function(output){
+        var json = JSON.parse(output);
+        switch (json.status) {
+            case AJAX_SUCCESS :
+                window.location.href = 'views/creation_vecteur.php';
+                break;
+            case AJAX_FAILURE :
+                //FIXME : gestion correcte de l'erreur
+                alert(json.message);
+                break;
+            case AJAX_ERROR :
+                $('#zone_saisie').hide();
+                alert(json.message);
+                break;
+        }
     }
+
+    var vecteurKeyUpHandler = function () {
+        //FIXME : interdire les non A T G C
+    };
+
+    var creerVecteurHandler = function () {
+        var input = {
+                        vecteur_1: $("#vecteur_1").val(),
+                        vecteur_2: $("#vecteur_2").val(),
+                        vecteur_3: $("#vecteur_3").val(), 
+                        vecteur_4: $("#vecteur_4").val(),
+                        patient_id: $("#liste_patients").val()
+                    };
+        $.post('/ajax/ajax_creer_vecteur.php', input, creerVecteurCallback);
+    };
 
     var documentReadyHandler = function () {
         $('#liste_patients').change(listeChangedHandler);
-    }
-    $(document).ready(documentReadyHandler);
+        $('#zone_saisie').hide();
+        $('#btn_vecteur').click(creerVecteurHandler);
+    };
 </script>
 <?php
 $patient_id = $_SESSION['patient_rfid'];
-//FIXME : ne pas proposer si création en cours
+    //On vérifie qu'il n'y a pas déjà un vecteur en création
 try {
+    $query = $db->prepare("select count(1) from vecteur where statut = 'CREE'");
+    $query->execute();
+    $count = $query->fetchColumn();
+    $query->closeCursor();
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+if($count > 0){
+    echo "Un vecteur est déjà en cours de création";
+    return;
+}
+
+try {
+    
+    //Il n'y a pas de vecteur en création --> on affiche l'interface de création des vecteurs
     $query = $db->prepare("select p.rfid, p.nom "
             . "from patients p "
             . "inner join adn a "
@@ -64,10 +108,10 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-
 echo "Sélectionnez un patient pour la création du vecteur : ";
 echo $liste_patients;
 ?>
+<script>$(document).ready(documentReadyHandler);</script>
 <br/>
 <span id="error"></span>
 <br/>
@@ -86,6 +130,7 @@ echo $liste_patients;
         <input type="text" id = 'vecteur_3' maxlength='1'/>
         <input type="text" id = 'vecteur_4' maxlength='1'/>
     </div>
+    <input type="submit" value="Créer le vecteur" id="btn_vecteur"/>
 </div>
 <?php
 require_once 'footer.php';
