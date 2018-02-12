@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 30 déc. 2017 à 13:01
+-- Généré le :  lun. 12 fév. 2018 à 21:30
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `adn` (
 --
 
 INSERT INTO `adn` (`rfid`, `base_1`, `base_2`, `base_3`, `base_4`, `prelevement_effectue`) VALUES
-('00000001', 'A', 'T', 'G', 'C', 'T'),
-('00000002', 'A', 'T', 'A', 'C', 'T');
+('00000001', 'A', 'T', 'G', 'C', 'F'),
+('00000002', 'A', 'T', 'A', 'C', 'F');
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
 --
 
 INSERT INTO `patients` (`rfid`, `nom`, `sexe`, `a_utilise_hbm`, `groupe_sanguin`, `infos_sang`, `etat_patient_calme`, `etat_patient_agite`, `etat_patient_tres_agite`, `diagnostic_drogue`, `diagnostic_maladie`, `diagnostic_imagerie`, `spermogramme`, `test_grossesse`) VALUES
-('00000001', 'John Doe', 'H', 'F', 'O+', 'Vert fluo', 'infos calme', 'info agité', 'info très agité', 'Rien à signaler', 'Rien à signaler', 'Rien à signaler', 'Fécondité normale', ''),
+('00000001', 'John Doe', 'H', 'T', 'O+', 'Vert fluo', 'infos calme', 'info agité', 'info très agité', 'Rien à signaler', 'Rien à signaler', 'Rien à signaler', 'Fécondité normale', ''),
 ('00000002', 'Jane Doe', 'F', 'T', 'AB-', 'Rien de particulier', 'infos calme', 'info agité', 'info très agité', 'Camée à la novocaïne', 'Cancer du poumon, SIDA, Hépatites A-Z', 'Octuple fracture du tibia gauche, torsion des vertèbres.', '', 'Négatif');
 
 -- --------------------------------------------------------
@@ -90,6 +90,7 @@ INSERT INTO `patients` (`rfid`, `nom`, `sexe`, `a_utilise_hbm`, `groupe_sanguin`
 
 DROP TABLE IF EXISTS `vecteur`;
 CREATE TABLE IF NOT EXISTS `vecteur` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `rfid` varchar(64) NOT NULL,
   `base_1` enum('A','T','G','C') NOT NULL DEFAULT 'A',
   `base_2` enum('A','T','G','C') NOT NULL DEFAULT 'A',
@@ -97,8 +98,13 @@ CREATE TABLE IF NOT EXISTS `vecteur` (
   `base_4` enum('A','T','G','C') NOT NULL DEFAULT 'A',
   `description` text NOT NULL,
   `statut` enum('CREE','VALIDE','ADMINISTRE') NOT NULL DEFAULT 'CREE',
-  PRIMARY KEY (`rfid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `https://www.leroymerlin.fr/v3/p/produits/quincaillerie-securite/` (`rfid`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `vecteur`
+--
 
 --
 -- Contraintes pour les tables déchargées
@@ -114,7 +120,7 @@ ALTER TABLE `adn`
 -- Contraintes pour la table `vecteur`
 --
 ALTER TABLE `vecteur`
-  ADD CONSTRAINT `fk_vecteur_rfid` FOREIGN KEY (`rfid`) REFERENCES `patients` (`rfid`);
+  ADD CONSTRAINT `https://www.leroymerlin.fr/v3/p/produits/quincaillerie-securite/` FOREIGN KEY (`rfid`) REFERENCES `patients` (`rfid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
