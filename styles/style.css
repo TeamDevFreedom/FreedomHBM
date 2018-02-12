@@ -1,0 +1,34 @@
+/* Styles généraux pour toute l'appli*/
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: url(/img/machine_fond.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content : center
+}
+
+/* Styles pour la page home*/
+.home_container{
+    border : 1px solid red;
+    display: flex;
+}
+.home_user_left{
+    flex: 1;
+    background-image: url(/img/user_1.png);
+    background-size: cover;
+    height: 50%;
+}
+
+.home_user_right{
+    flex: 1;
+    background-image: url(/img/user_2.png);
+    background-size: cover;
+    height: 50%;
+}

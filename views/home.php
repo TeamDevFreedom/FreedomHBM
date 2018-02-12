@@ -19,10 +19,14 @@
     };
     $(document).ready(documentReadyHandler);
 </script>
-<ul>
-    <li id="user1">User 1</li>
-    <li id="user2">User 2</li>
-    <li id="user3">User 3</li>
-    <li id="user4">User 4</li>
-</ul>
+<div class='home_container'>
+    <div class='home_col_left'>
+        <div class='home_user_left' id='user1'>User 1</div>
+        <div class='home_user_left' id='user3'>User 3</div>
+    </div>
+    <div class='home_col_right'>
+        <div class='home_user_right' id='user2'>User 2</div>
+        <div class='home_user_right' id='user4'>User 4</div>
+    </div>
+</div>
 <?php require_once 'footer.php'; ?>
