@@ -9,3 +9,4 @@
         <script src="/js/ajax_utils.js"></script>
     </head>
     <body>
+        <img class="background" src="/img/machine_fond.jpg" alt="background"/>

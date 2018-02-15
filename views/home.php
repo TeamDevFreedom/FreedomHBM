@@ -20,13 +20,17 @@
     $(document).ready(documentReadyHandler);
 </script>
 <div class='home_container'>
-    <div class='home_col_left'>
-        <div class='home_user_left' id='user1'>User 1</div>
-        <div class='home_user_left' id='user3'>User 3</div>
+    <div class='home_user' id='user1'>
+        <img src="/img/user_1.png" alt="user1"/>
     </div>
-    <div class='home_col_right'>
-        <div class='home_user_right' id='user2'>User 2</div>
-        <div class='home_user_right' id='user4'>User 4</div>
+    <div class='home_user' id='user2'>
+        <img src="/img/user_2.png" alt="user2"/>
+    </div>
+    <div class='home_user' id='user3'>
+        <img src="/img/user_1.png" alt="user3"/>
+    </div>
+    <div class='home_user' id='user4'>
+        <img src="/img/user_2.png" alt="user4"/>
     </div>
 </div>
 <?php require_once 'footer.php'; ?>
