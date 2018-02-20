@@ -29,7 +29,7 @@ require_once '../ajax/ajax_utils.php';
         var json = JSON.parse(output);
         switch (json.status) {
             case AJAX_SUCCESS :
-                $('#form_saisie_acces').hide();
+                $('#rfid').hide();
                 $('#error').hide();
                 $('#nom_patient').text("Patient : " + json.nom_patient);
                 $('#nom_patient').show();
@@ -79,18 +79,35 @@ require_once '../ajax/ajax_utils.php';
     };
     $(document).ready(documentReadyHandler);
 </script>
-<form id="form_saisie_acces">
-    <label for="rfid">Zone saisie accès</label>
-    <input id="rfid" type="text"/>
-</form>
-<span id="nom_patient"></span>
-<span id="error"></span>
-<ul>
-    <li id="check_up">Check-up</li>
-    <li id="diagnostic">Diagnostic</li>
-    <li id="soins_simples">Soins simples</li>
-    <li id="prepa_chirurgie">Prépa chirurgie</li>
-    <li id="anesthesie">Anesthésie</li>
-    <li id="reproduction">Reproduction</li>
-</ul>
+<div class="menu_standard_container">
+    <div class="menu_standard_saisie">
+        <input class="menu_standard_container_rfid" id="rfid" type="text"/>
+        <span class="menu_standard_container_nom" id="nom_patient"></span>
+        <span id="error"></span>
+    </div>
+    <div class="menu_standard_icons">
+        <div class="menu_standard_icons_row">
+            <div class="menu_standard_icons_cell">
+                <img src="/img/icone_check up.png" alt="Check-up" id="check_up"/>
+            </div>
+            <div class="menu_standard_icons_cell">
+                <img src="/img/icone_diagnostic.png" alt="Diagnostic" id="diagnostic"/>
+            </div>
+            <div class="menu_standard_icons_cell">
+                <img src="/img/icone_soins.png" alt="Soins simples" id="soins_simples"/>
+            </div>
+        </div>
+        <div class="menu_standard_icons_row">
+            <div class="menu_standard_icons_cell">
+                <img src="/img/icone_chirurgie.png" alt="Préparation chirurgie" id="prepa_chirurgie"/>
+            </div>
+            <div class="menu_standard_icons_cell">
+                <img src="/img/icone_anesthesie.png" alt="Anesthésie" id="anesthesie"/>
+            </div>
+            <div class="menu_standard_icons_cell">
+                <img src="/img/icone_reproduction.png" alt="Reproduction" id="reproduction"/>
+            </div>
+        </div>
+    </div>
+</div>
 <?php require_once 'footer.php'; ?>

@@ -20,6 +20,6 @@ if (isset($expected_password) && $expected_password === $user_password) {
     }
 
 } else {
-    header('Location: /views/login.php?id='.$user_id);
+    header('Location: /views/login.php?id='.$user_id."&erreur=1");
 }
 exit();
