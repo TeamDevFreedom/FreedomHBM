@@ -12,6 +12,7 @@ try {
     if($resultat){
         echo build_response(array('nom_patient' => $resultat->nom), $AJAX_SUCCESS, '');
         $_SESSION['patient_rfid'] = $rfid_saisie;
+        $_SESSION['patient_nom'] = $resultat->nom;
         //On marque le patient comme ayant été connecté au moins une fois
         $query_mark = $db->prepare("update patients p set p.a_utilise_hbm = 'T' where p.rfid = ?");
         $query_mark->execute(array($rfid_saisie));

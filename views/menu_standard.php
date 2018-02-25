@@ -1,29 +1,21 @@
 <?php
-
 require_once '../controllers/check_login.php';
 require_once 'header.php';
 require_once '../ajax/ajax_utils.php';
+$patient_set = isset($_SESSION['patient_rfid']);
+if ($patient_set) {
+    $patient_nom = $_SESSION['patient_nom'];
+}
 ?>
 <script>
-    var isAccesSaisi = false;
+    var isAccesSaisi = !$('#rfid').is(":visible");
     var idPatient;
 
-    var redirectHandler = function (url) {
-        if (isAccesSaisi) {
+    var redirectHandler = function (url, checkAccess = true) {
+        if (!checkAccess || isAccesSaisi) {
             window.location.href = url;
         }
-    };
-
-    var patientRfidReturnHandler = function (output) {
-        console.log("patientIdReturnHandler : output : " + output);
-        var json = JSON.parse(output);
-        console.log("json : " + json);
-        if (json !== undefined && json !== null && json !== "") {
-            var input = {rfid: json};
-            $.post('/ajax/ajax_saisie_acces.php',
-                    input, rfidReturnSaisieHandler);
-        }
-    };
+    }
 
     var rfidReturnSaisieHandler = function (output) {
         var json = JSON.parse(output);
@@ -32,6 +24,7 @@ require_once '../ajax/ajax_utils.php';
                 $('#rfid').hide();
                 $('#error').hide();
                 $('#nom_patient').text("Patient : " + json.nom_patient);
+                $('.menu_standard_icons').removeClass("menu_standard_icons_disabled");
                 $('#nom_patient').show();
                 isAccesSaisi = true;
                 break;
@@ -73,20 +66,34 @@ require_once '../ajax/ajax_utils.php';
         $('#reproduction').click(function () {
             redirectHandler('reproduction.php');
         });
+        $('#disconnect').click(function () {
+            redirectHandler('home.php', false);
+        });
         $('#rfid').blur(rfidSaisieHandler);
-        $.post('/ajax/ajax_patient_rfid.php',
-                patientRfidReturnHandler);
+        $('#rfid').keypress(function (e) {
+            if (e.which === 13) {
+                rfidSaisieHandler();
+            }
+        });
     };
     $(document).ready(documentReadyHandler);
 </script>
 <div class="menu_standard_container">
     <div class="menu_standard_saisie">
-        <input class="menu_standard_container_rfid" id="rfid" type="text"/>
-        <span class="menu_standard_container_nom" id="nom_patient"></span>
+        <input class="menu_standard_container_rfid" id="rfid" type="text" <?php if ($patient_set) {
+    echo "style='display:none'";
+} ?> />
+        <span class="menu_standard_container_nom patient_nom" id="nom_patient" <?php if (!$patient_set) {
+    echo "style='display:none'";
+} ?>><?php if ($patient_set) {
+    echo 'Patient : ' . $patient_nom;
+} ?></span>
         <span id="error"></span>
     </div>
-    <div class="menu_standard_icons">
-        <div class="menu_standard_icons_row">
+    <div class="menu_standard_icons <?php if (!$patient_set) {
+    echo 'menu_standard_icons_disabled';
+} ?>">
+        <div class="menu_standard_icons_row menu_standard_icons_row_top">
             <div class="menu_standard_icons_cell">
                 <img src="/img/icone_check up.png" alt="Check-up" id="check_up"/>
             </div>
@@ -108,6 +115,9 @@ require_once '../ajax/ajax_utils.php';
                 <img src="/img/icone_reproduction.png" alt="Reproduction" id="reproduction"/>
             </div>
         </div>
+    </div>
+    <div class="menu_standard_deconnexion">
+        <img id="disconnect" src="/img/bouton_deconnexion.png" alt="Déconnexion"/>
     </div>
 </div>
 <?php require_once 'footer.php'; ?>

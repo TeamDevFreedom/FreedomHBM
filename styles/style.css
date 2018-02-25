@@ -10,6 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'MainFont'
 }
 
 img.background{
@@ -20,6 +21,11 @@ img.background{
     left : 0px;
     position : absolute;
     z-index : -1;
+}
+
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/freesans.ttf')  format('truetype');
 }
 
 /* Styles pour la page home*/
@@ -69,7 +75,6 @@ img.background{
     width: 100%;
     color: #666666;
     text-align: center;
-    margin-top : 1%;
 }
 
 .login_password_erreur{
@@ -78,7 +83,6 @@ img.background{
     width: 100%;
     color: red;
     text-align: center;
-    margin-top : 1%;
 }
 
 .login_form{
@@ -117,7 +121,7 @@ img.background{
     display: flex;
     flex-direction: column;
     width : 70%;
-    height : 60%
+    height : 80%
 }
 .menu_standard_icons{
     display: flex;
@@ -131,13 +135,21 @@ img.background{
     justify-content: center;
 }
 
+.menu_standard_icons_row_top{
+    margin-bottom: 5%;
+}
+
 .menu_standard_icons_cell{
     width : 33%;
 }
 
+.menu_standard_icons_disabled img{
+    filter: grayscale(100%);
+}
+
 .menu_standard_icons_cell > img{
     display : block;
-    height : 90%;
+    height : 100%;
     margin: auto;
 }
 
@@ -151,11 +163,33 @@ img.background{
 
 .menu_standard_container_nom{
     width : fit-content;
+}
+
+.patient_nom{
+    background: white;
+    border-radius: 9999px;
     font-size: 3em;
+    line-height: 100%;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
+    border : 2px solid #A1A1A1;
 }
 
 .menu_standard_container_rfid{
     font-size: 3em;
     border-radius: 20px;
     text-align: center;
+}
+
+.menu_standard_deconnexion{
+    height : 10%;
+    margin-top: 5%;
+}
+
+.menu_standard_deconnexion > img{
+    height : 100%;
+    margin-left: auto;
+    display : block;
 }
