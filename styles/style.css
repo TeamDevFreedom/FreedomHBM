@@ -1,8 +1,19 @@
 /* Styles généraux pour toute l'appli*/
+@font-face {
+    font-family: 'MainFont';
+    src: url('/fonts/freesans.ttf')  format('truetype');
+}
+
 html{  
 }
 
 body {
+    font-family: 'MainFont';
+    margin: 0;
+    padding: 0;
+}
+
+.main {
     height : 1440px;
     width : 2160px;
     margin: 0;
@@ -10,32 +21,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'MainFont'
-}
-
-img.background{
-    display:block;
-    height : auto;
-    width: auto;
-    top : 0px;
-    left : 0px;
-    position : absolute;
-    z-index : -1;
-}
-
-@font-face {
-    font-family: 'MainFont';
-    src: url('/fonts/freesans.ttf')  format('truetype');
+    background: url("/img/machine_fond.jpg");
+    background-repeat: no-repeat;
 }
 
 /* Styles pour la page home*/
+.clip-svg{
+    display:block;
+    height: 0;
+    width: 0;
+}
 .home_container{
     width : 70%;
     height : 70%;
-    border : 1px solid green;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    border : 1px solid green;
 }
 .home_user{
     display: flex; 
@@ -44,9 +46,29 @@ img.background{
     flex-direction: column;
 }
 
-.home_user > img{
+.home_user > img.home_user_back{
     max-height  : 100%;
     max-width : 100%
+}
+
+.home_user_portrait {
+    clip-path: url(#hexagon-clip);
+}
+
+.home_user_portrait.user1 {
+    background-image : url('/img/user_portraits/user1.jpg');
+}
+
+.home_user_portrait.user2 {
+    background-image : url('/img/user_portraits/user2.jpg');
+}
+
+.home_user_portrait.user3 {
+    background-image : url('/img/user_portraits/user3.jpg');
+}
+
+.home_user_portrait.user4 {
+    background-image : url('/img/user_portraits/user4.jpg');
 }
 
 /* Page de login */
