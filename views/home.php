@@ -29,7 +29,7 @@
 <div class='home_container'>
     <div class='home_user' id='user1'>
         <img class="home_user_back" src="/img/user_1.png" alt="user1"/>
-        <img class="home_user_portrait" src="/img/user_portraits/user1.jpg"  alt="user1"/>
+        <!--<img class="home_user_portrait" src="/img/user_portraits/user1.jpg"  alt="user1"/>-->
     </div>
     <div class='home_user' id='user2'>
         <img class="home_user_back" src="/img/user_2.png" alt="user2"/>
