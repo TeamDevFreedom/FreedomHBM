@@ -25,7 +25,7 @@ if ($patient_set) {
                 $('#error').hide();
                 $('#nom_patient').text("Patient : " + json.nom_patient);
                 $('.menu_standard_icons').removeClass("menu_standard_icons_disabled");
-                $('#nom_patient').show();
+                $('.menu_standard_nom_patient_puces').show();
                 isAccesSaisi = true;
                 break;
             case AJAX_FAILURE :
@@ -80,19 +80,31 @@ if ($patient_set) {
 </script>
 <div class="menu_standard_container">
     <div class="menu_standard_saisie">
-        <input class="menu_standard_container_rfid" id="rfid" type="text" <?php if ($patient_set) {
-    echo "style='display:none'";
-} ?> />
-        <span class="menu_standard_container_nom patient_nom" id="nom_patient" <?php if (!$patient_set) {
-    echo "style='display:none'";
-} ?>><?php if ($patient_set) {
-    echo 'Patient : ' . $patient_nom;
-} ?></span>
+        <input class="menu_standard_container_rfid" id="rfid" type="text" <?php
+        if ($patient_set) {
+            echo "style='display:none'";
+        }
+        ?> />
+        <div class="menu_standard_nom_patient_puces"  <?php
+        if (!$patient_set) {
+            echo "style='display:none'";
+        }
+        ?>>
+            <img src="/img/puce.png" alt="puce"/>
+            <span class="patient_nom" id="nom_patient"><?php
+                if ($patient_set) {
+                    echo 'Patient : ' . $patient_nom;
+                }
+                ?></span>
+            <img src="/img/puce.png" alt="puce"/>
+        </div>
         <span id="error"></span>
     </div>
-    <div class="menu_standard_icons <?php if (!$patient_set) {
-    echo 'menu_standard_icons_disabled';
-} ?>">
+    <div class="menu_standard_icons <?php
+    if (!$patient_set) {
+        echo 'menu_standard_icons_disabled';
+    }
+    ?>">
         <div class="menu_standard_icons_row menu_standard_icons_row_top">
             <div class="menu_standard_icons_cell">
                 <img src="/img/icone_check up.png" alt="Check-up" id="check_up"/>
