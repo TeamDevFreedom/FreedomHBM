@@ -85,7 +85,7 @@ if ($patient_set) {
             echo "style='display:none'";
         }
         ?> />
-        <div class="menu_standard_nom_patient_puces"  <?php
+        <div class="nom_patient_puces"  <?php
         if (!$patient_set) {
             echo "style='display:none'";
         }

@@ -14,8 +14,8 @@ body {
 }
 
 .main {
-    height : 1440px;
-    width : 2160px;
+    height : 1824px;
+    width : 2736px;
     margin: 0;
     padding: 0;
     display: flex;
@@ -23,6 +23,7 @@ body {
     justify-content: center;
     background: url("/img/machine_fond.jpg");
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Styles pour la page home*/
@@ -181,7 +182,25 @@ body {
     margin-bottom: 5%;
 }
 
-.menu_standard_nom_patient_puces{
+.menu_standard_container_rfid{
+    font-size: 3em;
+    border-radius: 9999px;
+    text-align: center;
+}
+
+.menu_standard_deconnexion{
+    height : 10%;
+    margin-top: 5%;
+}
+
+.menu_standard_deconnexion > img{
+    height : 100%;
+    margin-left: auto;
+    display : block;
+}
+
+/* Pour les pages standard */
+.nom_patient_puces{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -189,7 +208,7 @@ body {
     width: fit-content;
 }
 
-.menu_standard_nom_patient_puces > img{
+.nom_patient_puces > img{
     width : 7%;
     height: auto;
 }
@@ -212,19 +231,51 @@ body {
     margin-right: 2%;
 }
 
-.menu_standard_container_rfid{
-    font-size: 3em;
-    border-radius: 9999px;
-    text-align: center;
-}
-
-.menu_standard_deconnexion{
-    height : 10%;
-    margin-top: 5%;
-}
-
-.menu_standard_deconnexion > img{
+.standard_page_body{
     height : 100%;
-    margin-left: auto;
-    display : block;
+    width : 100%;
+}
+
+.standard_page_header{
+    width : 100%;
+    height : 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.standard_page_content{
+    width : 100%;
+    height : 65%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.standard_page_footer{
+    width : 100%;
+    height : 15%;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.standard_page_footer > img#bouton_retour{
+    height : 60%;
+    margin-right: 10%;
+}
+
+/* Page de check-up 1*/
+.check_up_1_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37%;
+    width : 100%;
+}
+
+.check_up_1_content > img{
+    margin : 5%;
+    max-height: 100%;
 }

@@ -1,10 +1,10 @@
-<?php 
-require_once 'header.php'; 
+<?php
+require_once 'header.php';
 require_once '../controllers/check_login.php';
 ?>
 <script>
     var redirectHandler = function (url) {
-            window.location.href = url;
+        window.location.href = url;
     };
 
     var documentReadyHandler = function () {
@@ -20,9 +20,15 @@ require_once '../controllers/check_login.php';
     };
     $(document).ready(documentReadyHandler);
 </script>
-<ul>
-    <li id="calme">Sujet calme</li>
-    <li id="agite">Sujet agité</li>
-    <li id="tres_agite">Sujet très agité</li>
-</ul>
+<div class="standard_page_body">
+    <?php require_once './fragments/nom_patient_courant.php'; ?>
+    <div class="standard_page_content">
+        <div class="check_up_1_content">
+            <img src="/img/picto_calme.png" alt="Sujet calme" id="calme"/>
+            <img src="/img/picto_agite.png" alt="Sujet calme" id="agite"/>
+            <img src="/img/picto_tres_agite.png" alt="Sujet calme" id="tres_agite"/>
+        </div>
+    </div>
+    <?php require_once './fragments/bouton_retour.php' ?>
+</div>
 <?php require_once 'footer.php'; ?>
