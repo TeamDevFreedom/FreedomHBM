@@ -119,6 +119,7 @@ $heart_img = generer_heart_img($etat_patient);
             redirectHandler('check_up1.php');
         });
     };
+    play_anim(ANIM_CODE_CHECK_UP);
     $(document).ready(documentReadyHandler);
 </script>
 <div class="standard_page_body">
@@ -153,10 +154,4 @@ $heart_img = generer_heart_img($etat_patient);
     <?php require_once './fragments/bouton_retour.php' ?>
 </div>
 <?php
-//echo "Etat : " . $infos_etat . "<br/>";
-//echo "Tension : " . $tension . "<br/>";
-//echo "Groupe sanguin : " . $resultat->groupe_sanguin . "<br/>";
-//echo "Informations sanguines : " . $resultat->infos_sang . "<br/>";
-//FIXME
-//echo "<script>play_anim(ANIM_CODE_CHECK_UP)</script>";
 require_once 'footer.php';
