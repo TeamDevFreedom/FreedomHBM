@@ -25,7 +25,7 @@ if ($patient_set) {
                 $('#error').hide();
                 $('#nom_patient').text("Patient : " + json.nom_patient);
                 $('.menu_standard_icons').removeClass("menu_standard_icons_disabled");
-                $('.menu_standard_nom_patient_puces').show();
+                $('.nom_patient_puces').show();
                 isAccesSaisi = true;
                 break;
             case AJAX_FAILURE :

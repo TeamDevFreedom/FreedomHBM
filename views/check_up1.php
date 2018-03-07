@@ -17,9 +17,13 @@ require_once '../controllers/check_login.php';
         $('#tres_agite').click(function () {
             redirectHandler('check_up2.php?etat=tres_agite');
         });
+        $('#bouton_retour').click(function () {
+            redirectHandler('menu_standard.php');
+        });
     };
     $(document).ready(documentReadyHandler);
 </script>
+    
 <div class="standard_page_body">
     <?php require_once './fragments/nom_patient_courant.php'; ?>
     <div class="standard_page_content">
