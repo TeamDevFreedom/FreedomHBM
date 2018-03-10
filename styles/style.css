@@ -77,11 +77,15 @@ body {
 
 /* Page de login */
 
+.login_header{
+    height: 20%;
+    width : 100%;
+}
+
 .login_main{
-    height : 35%;
+    height : fit-content;
     width : 60%;
-    background-color: #c2d0df;
-    opacity: 0.8;
+    background-color: rgba(194, 208, 223, 0.8);
     border-radius: 20px;
     display : flex;
     flex-flow: column;
@@ -132,13 +136,14 @@ body {
 .login_button{
     background:url(/img/bouton_enter.png);
     background-repeat: no-repeat;
-    background-size: contain;
-    width:10%;
-    height:30%;
+    background-size: cover;
+    width:20em;
+    height : 9em;
     border: 0;
     display: block;
     float : right;
     margin-right: 2%;
+    margin-bottom: 2em;
 }
 
 /* Menu standard */
@@ -419,4 +424,99 @@ body {
 .loading_text{
     font-size: 5em;
     text-align: center;
+}
+
+/* Soins simples */
+.soins_simples_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height : 100%;
+    width : 100%;
+}
+
+.soins_simples_ligne {
+    height : 50%;
+    width : 40%;
+    display : flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.soins_simples_ligne > img{
+    height : 74.5%;
+}
+
+/* Anesthésie */
+.anesthesie_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37%;
+    width : 100%;
+}
+
+.anesthesie_content > img{
+    margin : 5%;
+    max-height: 100%;
+}
+
+/* Chirurgie */
+.chirurgie_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37%;
+    width : 100%;
+}
+
+.chirurgie_content > img{
+    margin : 5%;
+    max-height: 100%;
+}
+
+/* Reproduction */
+.reproduction_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37%;
+    width : 100%;
+}
+
+.reproduction_content > img{
+    margin : 5%;
+    max-height: 100%;
+}
+
+/* Resultat reproduction */
+.resultat_reproduction_content{
+    height : 90%;
+    width : 90%;
+    background: white;
+    border : 2px solid #A1A1A1;
+    border-radius: 3em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.resultat_reproduction_titre{
+    margin-left: 3%;
+    margin-top: 1%;
+    height : 20%;
+}
+
+.resultat_reproduction_titre > img {
+    height : 100%;
+}
+
+.resultat_reproduction_txt{
+    font-size: 3em;
+    font-family: 'ConsoleFont';
+    padding-left: 5%;
+    padding-top: 2%;
+    text-align: justify;
 }

@@ -8,11 +8,8 @@ if ($patient_set) {
 }
 ?>
 <script>
-    var isAccesSaisi = !$('#rfid').is(":visible");
-    var idPatient;
-
-    var redirectHandler = function (url, checkAccess = true) {
-        if (!checkAccess || isAccesSaisi) {
+    var redirectHandler = function (url) {
+        if (!$('#rfid').is(":visible")) {
             navigate(url);
         }
     }
@@ -67,7 +64,7 @@ if ($patient_set) {
             redirectHandler('reproduction.php');
         });
         $('#disconnect').click(function () {
-            redirectHandler('home.php', false);
+            navigate('home.php');
         });
         $('#rfid').blur(rfidSaisieHandler);
         $('#rfid').keypress(function (e) {

@@ -4,26 +4,32 @@ require_once 'header.php';
 require_once '../controllers/check_login.php';
 ?>
 <script>
-    var redirectHandler = function (url) {
-        window.location.href = url;
-    };
-
     var documentReadyHandler = function () {
         $('#desinfection').click(function () {
-            play_anim(ANIM_CODE_CHIR_DESINFECTION);
+            navigateAnimation('prepa_chirurgie.php', ANIM_CODE_CHIR_DESINFECTION);
         });
         $('#prelevement_tissus').click(function () {
-            play_anim(ANIM_CODE_CHIR_PRELEVEMENTS);
+            navigateAnimation('prepa_chirurgie.php', ANIM_CODE_CHIR_PRELEVEMENTS);
         });
         $('#intructions_chirurgie').click(function () {
-            redirectHandler('chir_instructions.php');
+            alert("Pages à rédiger");
+            navigate('chir_instructions.php');
+        });
+        $('#bouton_retour').click(function () {
+            navigate('menu_standard.php');
         });
     };
     $(document).ready(documentReadyHandler);
 </script>
-<ul>
-    <li id="desinfection">Désinfection</li>
-    <li id="prelevement_tissus">Prélèvement de tissus</li>
-    <li id="intructions_chirurgie">Instructions chirurgie</li>
-</ul>
+<div class="standard_page_body">
+    <?php require_once './fragments/nom_patient_courant.php'; ?>
+    <div class="standard_page_content">
+        <div class="chirurgie_content">
+            <img src="/img/picto_desinfection.png" alt="Désinfection" id="desinfection"/>
+            <img src="/img/picto_prevelement.png" alt="Prélèvement de tissus" id="prelevement_tissus"/>
+            <img src="/img/picto_instructions.png" alt="Instructions chirurgie" id="intructions_chirurgie"/>
+        </div>
+    </div>
+    <?php require_once './fragments/bouton_retour.php' ?>
+</div>
 <?php require_once 'footer.php'; ?>

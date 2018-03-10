@@ -14,7 +14,7 @@ require_once '../controllers/check_login.php';
             navigateAnimation('diag_resultat.php?type_diagnostic=imagerie', ANIM_CODE_DIAGNOSTIC_IMAGERIE);
         });
          $('#bouton_retour').click(function () {
-            navigateAnimation('menu_standard.php');
+            navigate('menu_standard.php');
         });
     };
     $(document).ready(documentReadyHandler);

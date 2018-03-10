@@ -34,13 +34,10 @@ try {
 }
 ?>
 <script>
-    var redirectHandler = function (url) {
-            window.location.href = url;
-    };
 
     var documentReadyHandler = function () {
          $('#bouton_retour').click(function () {
-            redirectHandler('diagnostic.php');
+            navigate('diagnostic.php');
         });
     };
     $(document).ready(documentReadyHandler);

@@ -1,32 +1,45 @@
-<?php 
-require_once 'header.php'; 
+<?php
+require_once 'header.php';
 require_once '../controllers/check_login.php';
 ?>
 <script>
-    var redirectHandler = function (url) {
-            window.location.href = url;
-    };
-
     var documentReadyHandler = function () {
         $('#antidouleurs').click(function () {
-            play_anim(ANIM_CODE_SOINS_ANTIDOULEURS);
+            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_ANTIDOULEURS);
         });
         $('#antibiotiques').click(function () {
-            play_anim(ANIM_CODE_SOINS_ANTIBIOTIQUES);
+            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_ANTIBIOTIQUES);
         });
         $('#inhalations').click(function () {
-            play_anim(ANIM_CODE_SOINS_INHALATIONS);
+            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_INHALATIONS);
         });
-         $('#prise_sang').click(function () {
-            play_anim(ANIM_CODE_SOINS_PRISE_SANG);
+        $('#prise_sang').click(function () {
+            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_PRISE_SANG);
+        });
+        $('#bouton_retour').click(function () {
+            navigate('menu_standard.php');
         });
     };
     $(document).ready(documentReadyHandler);
 </script>
+<div class="standard_page_body">
+    <?php require_once './fragments/nom_patient_courant.php'; ?>
+    <div class="standard_page_content">
+        <div class="soins_simples_content">
+            <div class="soins_simples_ligne">
+                <img src="/img/picto_antidouleur.png" id="antidouleurs" alt="Injection d'antidouleurs"/>
+                <img src="/img/picto_antibiotique.png" id="antibiotiques" alt="Injection d'antibiotiques"/>
+            </div>
+            <div class="soins_simples_ligne">
+                <img src="/img/picto_inhalations.png" id="inhalations" alt="Inhalations"/>
+                <img src="/img/picto_prise_sang.png" id="prise_sang" alt="Prise de sang"/>
+            </div>
+        </div>
+    </div>
+    <?php require_once './fragments/bouton_retour.php' ?>
+</div>
 <ul>
-    <li id="antidouleurs">Injection d'antidouleurs</li>
-    <li id="antibiotiques">Injection d'antibiotiques</li>
-    <li id="inhalations">Inhalations</li>
-    <li id="prise_sang">Prise de sang</li>
+
+
 </ul>
 <?php require_once 'footer.php'; ?>

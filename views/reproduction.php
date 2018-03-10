@@ -9,16 +9,25 @@ require_once '../controllers/check_login.php';
 
     var documentReadyHandler = function () {
         $('#spermogramme').click(function () {
-            redirectHandler('spermogramme.php');
+            navigateAnimation('resultats_reproduction.php?type=spermogramme', ANIM_CODE_SPERMOGRAMME);
         });
         $('#test_grossesse').click(function () {
-            redirectHandler('test_grossesse.php');
+            navigateAnimation('resultats_reproduction.php?type=test_grossesse.php', ANIM_CODE_TEST_GROSSESSE);
+        });
+        $('#bouton_retour').click(function () {
+            navigate('menu_standard.php');
         });
     };
     $(document).ready(documentReadyHandler);
 </script>
-<ul>
-    <li id="spermogramme">Spermogramme</li>
-    <li id="test_grossesse">Test de grossesse</li>
-</ul>
+<div class="standard_page_body">
+    <?php require_once './fragments/nom_patient_courant.php'; ?>
+    <div class="standard_page_content">
+        <div class="reproduction_content">
+            <img src="/img/picto_spermogramme.png" alt="Spermogramme" id="spermogramme"/>
+            <img src="/img/picto_test_grossesse.png" alt="Test de grossesse" id="test_grossesse"/>
+        </div>
+    </div>
+    <?php require_once './fragments/bouton_retour.php' ?>
+</div>
 <?php require_once 'footer.php';
