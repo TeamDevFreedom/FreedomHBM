@@ -8,7 +8,7 @@
 </svg>
 <script>
     var userClickHandler = function (id) {
-        window.location.href = './login.php?id=' + id;
+        navigate('./login.php?id=' + id);
     };
     var documentReadyHandler = function () {
         $('#user1').click(function () {

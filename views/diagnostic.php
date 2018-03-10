@@ -3,26 +3,31 @@ require_once 'header.php';
 require_once '../controllers/check_login.php';
 ?>
 <script>
-    var redirectHandler = function (url) {
-            window.location.href = url;
-    };
-
     var documentReadyHandler = function () {
         $('#drogue').click(function () {
-            redirectHandler('diag_drogue.php');
+            navigateAnimation('diag_resultat.php?type_diagnostic=drogue', ANIM_CODE_DIAGNOSTIC_DROGUE);
         });
         $('#maladie').click(function () {
-            redirectHandler('diag_maladie.php');
+            navigateAnimation('diag_resultat.php?type_diagnostic=maladie', ANIM_CODE_DIAGNOSTIC_MALADIE);
         });
         $('#imagerie').click(function () {
-            redirectHandler('diag_imagerie.php');
+            navigateAnimation('diag_resultat.php?type_diagnostic=imagerie', ANIM_CODE_DIAGNOSTIC_IMAGERIE);
+        });
+         $('#bouton_retour').click(function () {
+            navigateAnimation('menu_standard.php');
         });
     };
     $(document).ready(documentReadyHandler);
 </script>
-<ul>
-    <li id="drogue">Rechercher drogue</li>
-    <li id="maladie">Rechercher maladie</li>
-    <li id="imagerie">Radio / Scanner</li>
-</ul>
+<div class="standard_page_body">
+    <?php require_once './fragments/nom_patient_courant.php'; ?>
+    <div class="standard_page_content">
+        <div class="diagnostic_content">
+            <img src="/img/picto_drogue.png" alt="Recherche de drogue" id="drogue"/>
+            <img src="/img/picto_maladies.png" alt="Recherche de maladie" id="maladie"/>
+            <img src="/img/picto_imagerie.png" alt="Imagerie médicale" id="imagerie"/>
+        </div>
+    </div>
+    <?php require_once './fragments/bouton_retour.php' ?>
+</div>
 <?php require_once 'footer.php'; ?>

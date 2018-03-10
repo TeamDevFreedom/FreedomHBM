@@ -13,7 +13,7 @@ if ($patient_set) {
 
     var redirectHandler = function (url, checkAccess = true) {
         if (!checkAccess || isAccesSaisi) {
-            window.location.href = url;
+            navigate(url);
         }
     }
 

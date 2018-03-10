@@ -110,16 +110,11 @@ $pulsation = generer_bpm($etat_patient);
 $heart_img = generer_heart_img($etat_patient);
 ?>
 <script>
-    var redirectHandler = function (url) {
-        window.location.href = url;
-    };
-    
     var documentReadyHandler = function () {
         $('#bouton_retour').click(function () {
-            redirectHandler('check_up1.php');
+            navigate('check_up1.php');
         });
     };
-    play_anim(ANIM_CODE_CHECK_UP);
     $(document).ready(documentReadyHandler);
 </script>
 <div class="standard_page_body">

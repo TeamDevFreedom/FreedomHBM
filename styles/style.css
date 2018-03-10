@@ -4,6 +4,11 @@
     src: url('/fonts/freesans.ttf')  format('truetype');
 }
 
+@font-face {
+    font-family: 'ConsoleFont';
+    src: url('/fonts/octab-017.ttf')  format('truetype');
+}
+
 html{  
 }
 
@@ -317,6 +322,7 @@ body {
 
 .check_up_2_sang_txt{
     font-size: 3em;
+    font-family: 'ConsoleFont';
     height : 70%;
     width : 100%;
     padding-left: 10%;
@@ -333,7 +339,7 @@ body {
 
 .check_up_2_cardio > img {
     margin-left: 5%;
-    border-radius: 3%;
+    border-radius: 3em;
     height : 90%;
 }
 
@@ -364,6 +370,53 @@ body {
 .check_up_2_listing{
     vertical-align: middle;
     font-size: 3em;
+    font-family: 'ConsoleFont';
     width : 90%;
     text-align: justify;
+}
+
+/* Choix diagnostic */
+.diagnostic_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37%;
+    width : 100%;
+}
+
+.diagnostic_content > img{
+    margin : 5%;
+    max-height: 100%;
+}
+
+/* Résultat diagnostic */
+.diagnostic_result{
+    height : 100%;
+    width : 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 3em;
+    background : white;
+    border : 2px solid #A1A1A1;
+}
+
+.diagnostic_text{
+    font-size: 3em;
+    font-family: 'ConsoleFont';
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+}
+
+/* Page de loading */
+.loading_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.loading_text{
+    font-size: 5em;
+    text-align: center;
 }

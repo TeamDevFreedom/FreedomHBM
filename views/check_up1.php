@@ -3,27 +3,23 @@ require_once 'header.php';
 require_once '../controllers/check_login.php';
 ?>
 <script>
-    var redirectHandler = function (url) {
-        window.location.href = url;
-    };
-
     var documentReadyHandler = function () {
         $('#calme').click(function () {
-            redirectHandler('check_up2.php?etat=calme');
+            navigateAnimation('check_up2.php?etat=calme', ANIM_CODE_CHECK_UP);
         });
         $('#agite').click(function () {
-            redirectHandler('check_up2.php?etat=agite');
+            navigateAnimation('check_up2.php?etat=agite', ANIM_CODE_CHECK_UP);
         });
         $('#tres_agite').click(function () {
-            redirectHandler('check_up2.php?etat=tres_agite');
+            navigateAnimation('check_up2.php?etat=tres_agite', ANIM_CODE_CHECK_UP);
         });
         $('#bouton_retour').click(function () {
-            redirectHandler('menu_standard.php');
+            navigate('menu_standard.php');
         });
     };
     $(document).ready(documentReadyHandler);
 </script>
-    
+
 <div class="standard_page_body">
     <?php require_once './fragments/nom_patient_courant.php'; ?>
     <div class="standard_page_content">
