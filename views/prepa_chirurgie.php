@@ -6,13 +6,12 @@ require_once '../controllers/check_login.php';
 <script>
     var documentReadyHandler = function () {
         $('#desinfection').click(function () {
-            navigateAnimation('prepa_chirurgie.php', ANIM_CODE_CHIR_DESINFECTION);
+            navigateAnimationNoResult(ANIM_CODE_CHIR_DESINFECTION);
         });
         $('#prelevement_tissus').click(function () {
-            navigateAnimation('prepa_chirurgie.php', ANIM_CODE_CHIR_PRELEVEMENTS);
+            navigateAnimationNoResult(ANIM_CODE_CHIR_PRELEVEMENTS);
         });
         $('#intructions_chirurgie').click(function () {
-            alert("Pages à rédiger");
             navigate('chir_instructions.php');
         });
         $('#bouton_retour').click(function () {

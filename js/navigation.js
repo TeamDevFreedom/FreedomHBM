@@ -24,6 +24,11 @@ function navigate(url){
     window.location.href = url;
 }
 
+function navigateAnimationNoResult(animation){
+    var currentUrl = window.location.href;
+    navigateAnimation("no_result.php?source_url="+currentUrl, animation);
+}
+
 function navigateAnimation(url, animation){
     navigate("loading.php?return_url="+url+"&wait="+animation.duration+"&code="+animation.code);
 }
