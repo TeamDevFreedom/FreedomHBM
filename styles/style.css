@@ -586,3 +586,59 @@ body {
     line-height: 5em;
     font-family: 'ConsoleFont';
 }
+
+/* Menu ADN */
+.menu_adn_icons{
+    margin-top: 14%;
+    margin-bottom: 14%;
+    height : 47%;
+    width : 100%;
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu_adn_icons > img {
+    max-height: 100%;
+}
+
+.menu_adn_icons_disabled > img{
+    filter: grayscale(100%);
+}
+
+/* Résultats du prélèvement d'ADN */
+.prelevement_adn_resultat_content{
+    height : 80%;
+    width : 80%;
+    background: white;
+    border : 2px solid #A1A1A1;
+    border-radius: 3em;
+    padding: 2em;
+}
+
+.prelevement_adn_resultat_content > img{
+    height : 15%;
+}
+
+.prelevement_adn_resultat_bases{
+    height: 85%;
+    width : 75%;
+    display : flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.prelevement_adn_resultat_base{
+    height : fit-content;
+    width : fit-content;
+    background: white;
+    border : 2px solid #A1A1A1;
+    border-radius: 1em;
+    text-align: justify;
+    padding: 2em;
+    font-size: 3em;
+    font-family: 'MainFont';
+}

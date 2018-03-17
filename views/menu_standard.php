@@ -95,7 +95,7 @@ if ($patient_set) {
                 ?></span>
             <img src="/img/puce.png" alt="puce"/>
         </div>
-        <span id="error"></span>
+         <span id="error" style="display:none"></span>
     </div>
     <div class="menu_standard_icons <?php
     if (!$patient_set) {

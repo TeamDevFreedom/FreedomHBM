@@ -1,7 +1,38 @@
 <?php
+
 require_once 'header.php';
 require_once '../controllers/check_login.php';
 require_once '../db.php';
+
+$patient_id = $_SESSION['patient_rfid'];
+//On vérifie qu'il n'y a pas déjà un vecteur en création
+try {
+    $query = $db->prepare("select count(1) from vecteur where statut = 'CREE' and rfid = ?");
+    $query->execute(array($patient_id));
+    $count = $query->fetchColumn();
+    $query->closeCursor();
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+$en_creation = ($count > 0);
+
+function generate_list_patients_content() {
+    try {
+        $query = $db->prepare("select p.rfid, p.nom "
+                . "from patients p "
+                . "inner join adn a "
+                . "on p.rfid = a.rfid "
+                . "where a.prelevement_effectue = 'T'");
+        $query->execute();
+        $liste_patients .= '<option value="-1">-- Sélectionnez un patient --</option>';
+        while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
+            $liste_patients .= '<option value="' . $ligne->rfid . '">' . $ligne->nom . '</option>';
+        }
+        $query->closeCursor();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
 ?>
 <script>
     var listeChangedHandler = function () {
@@ -34,8 +65,8 @@ require_once '../db.php';
                 break;
         }
     };
-    
-    var creerVecteurCallback = function(output){
+
+    var creerVecteurCallback = function (output) {
         var json = JSON.parse(output);
         switch (json.status) {
             case AJAX_SUCCESS :
@@ -58,12 +89,12 @@ require_once '../db.php';
 
     var creerVecteurHandler = function () {
         var input = {
-                        vecteur_1: $("#vecteur_1").val(),
-                        vecteur_2: $("#vecteur_2").val(),
-                        vecteur_3: $("#vecteur_3").val(), 
-                        vecteur_4: $("#vecteur_4").val(),
-                        patient_id: $("#liste_patients").val()
-                    };
+            vecteur_1: $("#vecteur_1").val(),
+            vecteur_2: $("#vecteur_2").val(),
+            vecteur_3: $("#vecteur_3").val(),
+            vecteur_4: $("#vecteur_4").val(),
+            patient_id: $("#liste_patients").val()
+        };
         $.post('/ajax/ajax_creer_vecteur.php', input, creerVecteurCallback);
     };
 
@@ -72,46 +103,8 @@ require_once '../db.php';
         $('#zone_saisie').hide();
         $('#btn_vecteur').click(creerVecteurHandler);
     };
+    $(document).ready(documentReadyHandler);
 </script>
-<?php
-$patient_id = $_SESSION['patient_rfid'];
-    //On vérifie qu'il n'y a pas déjà un vecteur en création
-try {
-    $query = $db->prepare("select count(1) from vecteur where statut = 'CREE'");
-    $query->execute();
-    $count = $query->fetchColumn();
-    $query->closeCursor();
-} catch (PDOException $e) {
-    echo $e->getMessage();
-}
-if($count > 0){
-    echo "Un vecteur est déjà en cours de création";
-    return;
-}
-
-try {
-    
-    //Il n'y a pas de vecteur en création --> on affiche l'interface de création des vecteurs
-    $query = $db->prepare("select p.rfid, p.nom "
-            . "from patients p "
-            . "inner join adn a "
-            . "on p.rfid = a.rfid "
-            . "where a.prelevement_effectue = 'T'");
-    $query->execute();
-    $liste_patients = '<select name="liste_patients" id="liste_patients">';
-    $liste_patients .= '<option value="-1">-- Sélectionnez un patient --</option>';
-    while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
-        $liste_patients .= '<option value="' . $ligne->rfid . '">' . $ligne->nom . '</option>';
-    }
-    $liste_patients .= '</select>';
-    $query->closeCursor();
-} catch (PDOException $e) {
-    echo $e->getMessage();
-}
-echo "Sélectionnez un patient pour la création du vecteur : ";
-echo $liste_patients;
-?>
-<script>$(document).ready(documentReadyHandler);</script>
 <br/>
 <span id="error"></span>
 <br/>
@@ -133,4 +126,5 @@ echo $liste_patients;
     <input type="submit" value="Créer le vecteur" id="btn_vecteur"/>
 </div>
 <?php
+
 require_once 'footer.php';

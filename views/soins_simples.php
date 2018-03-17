@@ -5,16 +5,16 @@ require_once '../controllers/check_login.php';
 <script>
     var documentReadyHandler = function () {
         $('#antidouleurs').click(function () {
-            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_ANTIDOULEURS);
+            navigateAnimationNoResult(ANIM_CODE_SOINS_ANTIDOULEURS);
         });
         $('#antibiotiques').click(function () {
-            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_ANTIBIOTIQUES);
+            navigateAnimationNoResult(ANIM_CODE_SOINS_ANTIBIOTIQUES);
         });
         $('#inhalations').click(function () {
-            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_INHALATIONS);
+            navigateAnimationNoResult(ANIM_CODE_SOINS_INHALATIONS);
         });
         $('#prise_sang').click(function () {
-            navigateAnimation('soins_simples.php', ANIM_CODE_SOINS_PRISE_SANG);
+            navigateAnimationNoResult(ANIM_CODE_SOINS_PRISE_SANG);
         });
         $('#bouton_retour').click(function () {
             navigate('menu_standard.php');
