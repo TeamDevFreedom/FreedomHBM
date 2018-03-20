@@ -642,3 +642,90 @@ body {
     font-size: 3em;
     font-family: 'MainFont';
 }
+
+/* Page de création de vecteurs */
+.creation_vecteur_content{
+    height : 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.creation_vecteur_list{
+    height : 20%;
+    width : 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.creation_vecteur_list #liste_patients {
+    height: fit-content;
+    width: fit-content;
+    font-size: 5em;
+    border-radius: 3em;
+}
+
+.creation_vecteur_saisie{
+    height: 80%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 3em;
+}
+
+.creation_vecteur_show_adn{
+    width: 100%;
+    height : 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creation_vecteur_show_adn > span{
+    background: white;
+    border : 2px solid #A1A1A1;
+    border-radius: 1em;
+    padding: 1em;
+    width: 1em;
+    height: 1.5em;
+}
+
+.creation_vecteur_saisie_adn{
+    width: 100%;
+    height : 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creation_vecteur_saisie_adn > input{
+    background: white;
+    border: 2px solid #A1A1A1;
+    border-radius: 1em;
+    padding: 1em;
+    font-size: 1.5em;
+    height: 1em;
+    font-weight: bold;
+    font-family: 'ConsoleFont';
+    width: 0.5em;
+}
+
+.creation_vecteur_creer {
+    height: 18%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.creation_vecteur_creer > img{
+    max-height: 100%;
+}
