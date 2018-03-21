@@ -6,7 +6,9 @@ var AJAX_ERROR = 3;
 //En gros pour lancer une anim on appelera $ANIM_BASE_URL + une constante de code
 var ANIM_BASE_URL = 'http://127.0.0.1:8080/';
 //constantes de code : duration est en millisecondes
-var ANIM_CODE_CHECK_UP = {code :"checkup", duration: "2000"};
+var ANIM_CODE_CHECK_UP_CALME = {code :"checkup", duration: "2000"};
+var ANIM_CODE_CHECK_UP_AGITE = {code :"checkup", duration: "2000"};
+var ANIM_CODE_CHECK_UP_TRES_AGITE = {code :"checkup", duration: "2000"};
 var ANIM_CODE_DIAGNOSTIC_DROGUE = {code :"diagnostic_drogue", duration: "2000"};
 var ANIM_CODE_DIAGNOSTIC_MALADIE = {code :"diagnostic_maladie", duration: "2000"};
 var ANIM_CODE_DIAGNOSTIC_IMAGERIE = {code :"diagnostic_imagerie", duration: "2000"};

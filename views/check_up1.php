@@ -8,10 +8,10 @@ require_once '../controllers/check_login.php';
             navigateAnimation('check_up2.php?etat=calme', ANIM_CODE_CHECK_UP);
         });
         $('#agite').click(function () {
-            navigateAnimation('check_up2.php?etat=agite', ANIM_CODE_CHECK_UP);
+            navigateAnimation('check_up2.php?etat=agite', ANIM_CODE_CHECK_UP_AGITE);
         });
         $('#tres_agite').click(function () {
-            navigateAnimation('check_up2.php?etat=tres_agite', ANIM_CODE_CHECK_UP);
+            navigateAnimation('check_up2.php?etat=tres_agite', ANIM_CODE_CHECK_UP_TRES_AGITE);
         });
         $('#bouton_retour').click(function () {
             navigate('menu_standard.php');
