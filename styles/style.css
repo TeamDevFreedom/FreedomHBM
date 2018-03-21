@@ -668,6 +668,19 @@ body {
     border-radius: 3em;
 }
 
+.creation_vecteur_list span {
+    height : fit-content;
+    width : fit-content;
+    background: white;
+    border : 2px solid #A1A1A1;
+    border-radius: 1em;
+    text-align: justify;
+    padding: 2em;
+    font-size: 3em;
+    font-family: 'MainFont';
+}
+
+
 .creation_vecteur_saisie{
     height: 80%;
     width: 50%;

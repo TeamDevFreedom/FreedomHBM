@@ -3,31 +3,23 @@ require_once 'header.php';
 require_once '../controllers/check_login.php';
 require_once '../db.php';
 
-$patient_id = $_SESSION['patient_rfid'];
-//On vérifie qu'il n'y a pas déjà un vecteur en création
-try {
-    $query = $db->prepare("select count(1) from vecteur where statut = 'CREE' and rfid = ?");
-    $query->execute(array($patient_id));
-    $count = $query->fetchColumn();
-    $query->closeCursor();
-} catch (PDOException $e) {
-    echo $e->getMessage();
-}
-$en_creation = ($count > 0);
-
 //Génération de la liste
+$has_patients = false;
 function generate_list_patients_content($db) {
     $liste_patients = "";
     try {
-        $query = $db->prepare("select p.rfid, p.nom "
+        $query = $db->prepare("select distinct p.rfid, p.nom "
                 . "from patients p "
                 . "inner join adn a "
                 . "on p.rfid = a.rfid "
-                . "where a.prelevement_effectue = 'T'");
+                . "where a.prelevement_effectue = 'T' "
+                . "and not exists(select 1 from vecteur v where v.rfid = p.rfid and v.statut = 'CREE') "
+                . "");
         $query->execute();
         $liste_patients .= '<option value="-1">-- Sélectionnez un patient --</option>';
         while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
             $liste_patients .= '<option value="' . $ligne->rfid . '">' . $ligne->nom . '</option>';
+            $has_patients = true;
         }
         $query->closeCursor();
     } catch (PDOException $e) {
@@ -35,6 +27,7 @@ function generate_list_patients_content($db) {
     }
     return $liste_patients;
 }
+$liste_patients = generate_list_patients_content($db);
 ?>
 <script>
     var listeChangedHandler = function () {
@@ -42,13 +35,12 @@ function generate_list_patients_content($db) {
         if (id !== "-1") {
             var input = {rfid: id};
             $.post('/ajax/ajax_get_adn_patient.php', input, getADNHandler);
-        }else{
+        } else {
             $('#creation_vecteur_saisie *').hide();
         }
     };
 
     var getADNHandler = function (output) {
-        alert(output);
         var json = JSON.parse(output);
         switch (json.status) {
             case AJAX_SUCCESS :
@@ -75,7 +67,7 @@ function generate_list_patients_content($db) {
         var json = JSON.parse(output);
         switch (json.status) {
             case AJAX_SUCCESS :
-                window.location.href = 'views/creation_vecteur.php';
+                navigate('creation_vecteur.php');
                 break;
             case AJAX_FAILURE :
                 alert(json.message);
@@ -113,17 +105,25 @@ function generate_list_patients_content($db) {
         $("#vecteur_2").keypress(vecteurKeyUpHandler);
         $("#vecteur_3").keypress(vecteurKeyUpHandler);
         $("#vecteur_4").keypress(vecteurKeyUpHandler);
+        $('#bouton_retour').click(function () {
+            navigate('menu_adn.php');
+        });
     };
     $(document).ready(documentReadyHandler);
 </script>
 <div class = "standard_page_body">
     <div class="standard_page_header"></div>
     <div class="standard_page_content">
-        <div class="creation_vecteur_content">
+        <div class="creation_vecteur_content" >
             <div class="creation_vecteur_list">
-                <select id="liste_patients">
-                    <?php echo generate_list_patients_content($db); ?>
-                </select>
+                <?php if($has_patients){
+                    echo '<select id="liste_patients">';
+                    echo $liste_patients;
+                    echo '</select>';
+                }else{
+                    echo '<span>Tout les patients ayant subit un prélèvement ont un vecteur en cours de création.</span>';
+                }
+                ?>
             </div>
             <div id ="creation_vecteur_saisie" class="creation_vecteur_saisie">
                 <div id="adn" class="creation_vecteur_show_adn" style='display:none'>

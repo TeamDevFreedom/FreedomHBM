@@ -9,6 +9,7 @@ $vecteur_2 = filter_input(INPUT_POST, 'vecteur_2', FILTER_SANITIZE_URL);
 $vecteur_3 = filter_input(INPUT_POST, 'vecteur_3', FILTER_SANITIZE_URL);
 $vecteur_4 = filter_input(INPUT_POST, 'vecteur_4', FILTER_SANITIZE_URL);
 $patient_id = filter_input(INPUT_POST, 'patient_id', FILTER_SANITIZE_URL);
+
 try {
     //Vérification de la validité du vecteur
     if (!preg_match("/[atgcATGC]{4}/", $vecteur_1 . $vecteur_2 . $vecteur_3 . $vecteur_4)) {
@@ -17,15 +18,14 @@ try {
     }
 
     $query = $db->prepare("insert into vecteur(rfid, base_1, base_2, base_3, base_4, description, statut) values (?, ?, ?, ?, ?, ?, ?)");
-    $query->execute(array($patient_id, strtoupper($vecteur_1), strtoupper($vecteur_2), strtoupper($vecteur_3), strtoupper($vecteur_4), '<Description à remplir par un orga>', 'CREE'));
+    $resultat = $query->execute(array($patient_id, strtoupper($vecteur_1), strtoupper($vecteur_2), strtoupper($vecteur_3), strtoupper($vecteur_4), '<Description à remplir par un orga>', 'CREE'));
     //Pas de while car on attend un résultat unique
     if ($resultat) {
         echo build_response(array(), $AJAX_SUCCESS, '');
     } else {
         echo build_response(array(), $AJAX_FAILURE, 'Erreur de création du vecteur : '.$query->errorInfo()[2]);
     }
-    $resultat = $query->fetch(PDO::FETCH_OBJ);
     $query->closeCursor();
 } catch (PDOException $e) {
-    echo build_response(array('base1' => '', 'base2' => '', 'base3' => '', 'base4' => ''), $AJAX_ERROR, '$e->getMessage()');
+    echo build_response(array('base1' => '', 'base2' => '', 'base3' => '', 'base4' => ''), $AJAX_ERROR, $e->getMessage());
 }
