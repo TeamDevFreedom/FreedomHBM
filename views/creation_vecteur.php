@@ -5,29 +5,25 @@ require_once '../db.php';
 
 //Génération de la liste
 $has_patients = false;
-function generate_list_patients_content($db) {
-    $liste_patients = "";
-    try {
-        $query = $db->prepare("select distinct p.rfid, p.nom "
-                . "from patients p "
-                . "inner join adn a "
-                . "on p.rfid = a.rfid "
-                . "where a.prelevement_effectue = 'T' "
-                . "and not exists(select 1 from vecteur v where v.rfid = p.rfid and v.statut = 'CREE') "
-                . "");
-        $query->execute();
-        $liste_patients .= '<option value="-1">-- Sélectionnez un patient --</option>';
-        while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
-            $liste_patients .= '<option value="' . $ligne->rfid . '">' . $ligne->nom . '</option>';
-            $has_patients = true;
-        }
-        $query->closeCursor();
-    } catch (PDOException $e) {
-        echo $e->getMessage();
+$liste_patients = "";
+try {
+    $query = $db->prepare("select distinct p.rfid, p.nom "
+            . "from patients p "
+            . "inner join adn a "
+            . "on p.rfid = a.rfid "
+            . "where a.prelevement_effectue = 'T' "
+            . "and not exists(select 1 from vecteur v where v.rfid = p.rfid and v.statut = 'CREE') "
+            . "");
+    $query->execute();
+    $liste_patients .= '<option value="-1">-- Sélectionnez un patient --</option>';
+    while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
+        $liste_patients .= '<option value="' . $ligne->rfid . '">' . $ligne->nom . '</option>';
+        $has_patients = true;
     }
-    return $liste_patients;
+    $query->closeCursor();
+} catch (PDOException $e) {
+    echo $e->getMessage();
 }
-$liste_patients = generate_list_patients_content($db);
 ?>
 <script>
     var listeChangedHandler = function () {
@@ -116,11 +112,12 @@ $liste_patients = generate_list_patients_content($db);
     <div class="standard_page_content">
         <div class="creation_vecteur_content" >
             <div class="creation_vecteur_list">
-                <?php if($has_patients){
+                <?php
+                if ($has_patients) {
                     echo '<select id="liste_patients">';
                     echo $liste_patients;
                     echo '</select>';
-                }else{
+                } else {
                     echo '<span>Tout les patients ayant subit un prélèvement ont un vecteur en cours de création.</span>';
                 }
                 ?>
@@ -144,7 +141,7 @@ $liste_patients = generate_list_patients_content($db);
             </div>
         </div>
     </div>
-    <?php require_once './fragments/bouton_retour.php' ?>
+<?php require_once './fragments/bouton_retour.php' ?>
 </div>
 <?php
 require_once 'footer.php';

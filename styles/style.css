@@ -742,3 +742,64 @@ body {
 .creation_vecteur_creer > img{
     max-height: 100%;
 }
+
+/* La page d'administration des vecteurs*/
+.admin_vecteur_content{
+    width: 70%;
+    height : 90%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 3em;
+    background : white;
+    border : 2px solid #A1A1A1;
+    padding: 2em;
+}
+
+.admin_vecteur_ligne{
+    min-height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 3em;
+}
+
+.admin_vecteur_adn_pad{
+    padding-top: 0.2em;
+}
+
+.admin_vecteur_adn{
+    height: 100%;
+    width: 15%;
+}
+
+.admin_vecteur_statut{
+    width : 30%;
+    height: 100%;
+}
+
+.admin_vecteur_statut > img{
+    height : 2em;
+}
+
+.admin_vecteur_statut{
+    height : 2em;
+    height: 100%;
+}
+
+
+.admin_vecteur_description{
+    width: 55%;
+    font-size: 1em;
+    font-family: 'ConsoleFont';
+    text-align: justify;
+    height: fit-content;
+}
+
+.admin_vecteur_line{
+    border-top: 2px solid #A1A1A1;
+    height: 1px;
+    width : 80%;
+    margin-top: 1em;
+    margin-bottom : 1em;
+}
