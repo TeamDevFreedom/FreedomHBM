@@ -17,7 +17,7 @@ require_once '../controllers/check_login.php';
     <?php require_once './fragments/nom_patient_courant.php'; ?>
     <div class="standard_page_content">
         <div class="anesthesie_content">
-            <img id="prelever" src="/img/picto_anesthesie_2.png" alt="Prélèvement ADN"/>
+            <img id="prelever" src="/img/icone_prelevevement_adn.png" alt="Prélèvement ADN"/>
         </div>
     </div>
     <?php require_once './fragments/bouton_retour.php' ?>

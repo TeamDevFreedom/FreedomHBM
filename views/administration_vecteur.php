@@ -69,7 +69,7 @@ try {
                 echo '</div>';
                 echo '<div class="admin_vecteur_statut">';
                 if ($vecteur['administrable']) {
-                    echo '<img class="bt_admin_vecteur" src="/img/bouton_enter.png" alt="administrer" id="' . $vecteur['id'] . '"/>';
+                    echo '<img class="bt_admin_vecteur" src="/img/bouton_administrer.png" alt="administrer" id="' . $vecteur['id'] . '"/>';
                 } else {
                     echo $vecteur['statut'];
                 }

@@ -40,7 +40,7 @@ try {
     ?>
     <div class="standard_page_content">
         <div class="prelevement_adn_resultat_content">
-            <img src="/img/titre_grp_sanguin.png" alt="titre"/>
+            <img src="/img/titre_resultat_sequencage.png" alt="titre"/>
             <div class="prelevement_adn_resultat_bases">
                 <div class="prelevement_adn_resultat_base"><div><?php echo $base_1; ?></div></div>
                 <div class="prelevement_adn_resultat_base"><div><?php echo $base_2; ?></div></div>

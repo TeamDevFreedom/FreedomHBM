@@ -96,9 +96,9 @@ if ($patient_set) {
         echo 'menu_adn_icons_disabled';
     }
     ?>">
-        <img src="/img/icone_chirurgie.png" alt="Prélèvement d'ADN" id="prelevement_adn"/>
-        <img src="/img/icone_chirurgie.png" alt="Création de vecteur" id="creation_vecteur"/>
-        <img src="/img/icone_chirurgie.png" alt="Administraction de vecteur" id="administration_vecteur"/>
+        <img src="/img/icone_prelevement_adn.png" alt="Prélèvement d'ADN" id="prelevement_adn"/>
+        <img src="/img/icone_crea_vecteur.png" alt="Création de vecteur" id="creation_vecteur"/>
+        <img src="/img/icone_admin_vecteur.png" alt="Administraction de vecteur" id="administration_vecteur"/>
     </div>
     <div class="menu_standard_deconnexion">
         <img id="disconnect" src="/img/bouton_deconnexion.png" alt="Déconnexion"/>

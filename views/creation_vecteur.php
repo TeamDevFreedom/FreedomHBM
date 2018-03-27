@@ -136,7 +136,7 @@ try {
                     <input type="text" id = 'vecteur_4' maxlength='1'/>
                 </div>
                 <div class="creation_vecteur_creer">
-                    <img src="/img/bouton_enter.png" alt="Créer" id="btn_vecteur" style='display:none'/>
+                    <img src="/img/bouton_creer.png" alt="Créer" id="btn_vecteur" style='display:none'/>
                 </div>
             </div>
         </div>
