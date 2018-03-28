@@ -27,6 +27,7 @@ try {
     echo $e->getMessage();
 }
 ?>
+<script src="/js/jquery.js"></script>
 <script>
     var documentReadyHandler = function () {
         $('#bouton_retour').click(function () {
