@@ -4,9 +4,9 @@ require_once '../db.php';
 require_once '../ajax/ajax_utils.php';
 
 $id_vecteur = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_URL);
-$desc_vecteur = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_URL);
+$desc_vecteur = html_entity_decode(filter_input(INPUT_POST, 'description', FILTER_UNSAFE_RAW));
 try {
-    $query = $db->prepare("update vecteur set statut='VALIDE', description= ? where id = ?");
+    $query = $db->prepare("update vecteur set statut='VALIDE', description=? where id = ?");
     $resultat = $query->execute(array($desc_vecteur, $id_vecteur));
     if ($resultat) {
         echo build_response(array(), $AJAX_SUCCESS, '');
