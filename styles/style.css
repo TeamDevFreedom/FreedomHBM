@@ -749,6 +749,7 @@ body {
     height : 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     overflow-y: auto;
     border-radius: 3em;
     background : white;
@@ -761,6 +762,7 @@ body {
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     font-size: 3em;
 }
 
@@ -774,26 +776,12 @@ body {
 }
 
 .admin_vecteur_statut{
-    width : 30%;
+    width : 17%;
     height: 100%;
 }
 
 .admin_vecteur_statut > img{
     height : 2em;
-}
-
-.admin_vecteur_statut{
-    height : 2em;
-    height: 100%;
-}
-
-
-.admin_vecteur_description{
-    width: 55%;
-    font-size: 1em;
-    font-family: 'ConsoleFont';
-    text-align: justify;
-    height: fit-content;
 }
 
 .admin_vecteur_line{

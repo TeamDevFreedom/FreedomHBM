@@ -4,15 +4,19 @@ require_once '../controllers/check_login.php';
 require_once '../db.php';
 
 //Génération de la liste
-$has_patients = false;
+$can_create = false;
 $liste_patients = "";
 try {
+    $query_create = $db->prepare("select * from vecteur v where v.statut = 'CREE'");
+    $query_create->execute();
+    $can_create = ($query_create->fetchColumn()) == 0;
+    
     $query = $db->prepare("select distinct p.rfid, p.nom "
             . "from patients p "
             . "inner join adn a "
             . "on p.rfid = a.rfid "
             . "where a.prelevement_effectue = 'T' "
-            . "and not exists(select 1 from vecteur v where v.rfid = p.rfid and v.statut = 'CREE') "
+            . "and p.a_utilise_hbm = 'T' "
             . "");
     $query->execute();
     $liste_patients .= '<option value="-1">-- Sélectionnez un patient --</option>';
@@ -73,7 +77,7 @@ try {
                 alert(json.message);
                 break;
         }
-    }
+    };
 
     var vecteurKeyUpHandler = function (event) {
         var val = String.fromCharCode(event.which).toUpperCase();
@@ -113,12 +117,12 @@ try {
         <div class="creation_vecteur_content" >
             <div class="creation_vecteur_list">
                 <?php
-                if ($has_patients) {
+                if ($can_create) {
                     echo '<select id="liste_patients">';
                     echo $liste_patients;
                     echo '</select>';
                 } else {
-                    echo '<span>Tout les patients ayant subit un prélèvement ont un vecteur en cours de création.</span>';
+                    echo '<span>Un vecteur est en cours de création.</span>';
                 }
                 ?>
             </div>

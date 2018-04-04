@@ -26,14 +26,15 @@ $patient_id = $_SESSION['patient_rfid'];
 $has_vecteur = false;
 $vecteurs = array();
 try {
-    $query = $db->prepare("select * from vecteur where rfid = ?");
+    $query = $db->prepare("select * from vecteur where rfid = ? order by id desc");
     $query->execute(array($patient_id));
     if (!empty($query->rowCount())) {
         $has_vecteur = true;
     }
     while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
         $vecteur = array();
-        $vecteur['description'] = $ligne->description;
+        $vecteur['description_ok'] = $ligne->description_ok;
+        $vecteur['description_nok'] = $ligne->description_nok;
         $vecteur['administrable'] = false;
         $vecteur['id'] = $ligne->id;
         $vecteur['adn'] = '[ ' . $ligne->base_1 . ' ' . $ligne->base_2 . ' ' . $ligne->base_3 . ' ' . $ligne->base_4 . ' ]';
@@ -41,6 +42,8 @@ try {
             $vecteur['statut'] = "Administré";
         } else if ($ligne->statut == "CREE") {
             $vecteur['statut'] = "Création en cours";
+        } else if ($ligne->statut == "PERIME") {
+            $vecteur['statut'] = "Périmé";
         } else {
             $vecteur['administrable'] = true;
         }
@@ -73,9 +76,6 @@ try {
                 } else {
                     echo $vecteur['statut'];
                 }
-                echo '</div>';
-                echo '<div class="admin_vecteur_description">';
-                echo $vecteur['description'];
                 echo '</div>';
                 echo '</div>';
                 if ($i < $len - 1) {

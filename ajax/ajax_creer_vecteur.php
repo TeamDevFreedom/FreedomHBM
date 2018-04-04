@@ -16,9 +16,12 @@ try {
         echo build_response(array(), $AJAX_FAILURE, "Les 4 bases du vecteur doivent être saisies parmis les lettres A, T, G et C");
         return;
     }
+    //D'abord on marque comme PERIME les vecteurs VALIDE.
+    $query_perime = $db->prepare("update vecteur set statut = 'PERIME' where statut = 'VALIDE' ");
+    $query_perime->execute(array());
 
-    $query = $db->prepare("insert into vecteur(rfid, base_1, base_2, base_3, base_4, description, statut) values (?, ?, ?, ?, ?, ?, ?)");
-    $resultat = $query->execute(array($patient_id, strtoupper($vecteur_1), strtoupper($vecteur_2), strtoupper($vecteur_3), strtoupper($vecteur_4), '<Description à remplir par un orga>', 'CREE'));
+    $query = $db->prepare("insert into vecteur(rfid, base_1, base_2, base_3, base_4, description_ok, description_nok, statut) values (?, ?, ?, ?, ?, ?, ?, ?)");
+    $resultat = $query->execute(array($patient_id, strtoupper($vecteur_1), strtoupper($vecteur_2), strtoupper($vecteur_3), strtoupper($vecteur_4), '<Description à remplir par un orga>', '<Description à remplir par un orga>', 'CREE'));
     //Pas de while car on attend un résultat unique
     if ($resultat) {
         echo build_response(array(), $AJAX_SUCCESS, '');

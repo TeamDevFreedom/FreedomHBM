@@ -107,7 +107,19 @@ table td:nth-child(3){
     width: 6em;
 }
 
-table td:nth-child(5) textarea{
+table td:nth-child(5), table td:nth-child(6){
+    width: 50%;
+} 
+
+table td:nth-child(5) textarea, table td:nth-child(6) textarea{
     width: 100%;
     height: 100%;
+}
+
+table td:nth-child(5) textarea{
+    border : 1px solid darkgreen;
+}
+
+table td:nth-child(6) textarea{
+    border : 1px solid darkred;
 }

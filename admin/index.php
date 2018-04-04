@@ -8,11 +8,12 @@ try {
             . " from vecteur v "
             . " inner join patients p on v.rfid = p.rfid "
             . " inner join adn a on a.rfid = v.rfid "
-            . " order by nom asc");
+            . " order by id desc");
     $query->execute(array());
     while ($ligne = $query->fetch(PDO::FETCH_OBJ)) {
         $vecteur = array();
-        $vecteur['description'] = $ligne->description;
+        $vecteur['description_ok'] = $ligne->description_ok;
+        $vecteur['description_nok'] = $ligne->description_nok;
         $vecteur['patient'] = $ligne->nom;
         $vecteur['validable'] = false;
         $vecteur['devalidable'] = false;
@@ -24,9 +25,13 @@ try {
         } else if ($ligne->statut == "CREE") {
             $vecteur['statut'] = "En création";
             $vecteur['validable'] = true;
-        } else {
+        } else if ($ligne->statut == "VALIDE") {
             $vecteur['devalidable'] = true;
             $vecteur['statut'] = "Validé";
+        } else {
+            $vecteur['devalidable'] = false;
+            $vecteur['validable'] = false;
+            $vecteur['statut'] = "Périmé";
         }
         array_push($vecteurs, $vecteur);
     }
@@ -56,8 +61,9 @@ try {
 
             var validerHandler = function (event) {
                 var id = event.target.id;
-                var description = $('#text_area_' + id).val();
-                var input = {id: event.target.id, description: description};
+                var description_ok = $('#text_area_ok_' + id).val();
+                var description_nok = $('#text_area_nok_' + id).val();
+                var input = {id: event.target.id, description_ok: description_ok, description_nok: description_nok};
                 $.post('valider_vecteur.php', input, validerVecteurCallback);
             };
 
@@ -78,7 +84,8 @@ try {
                 <th>ADN</th>
                 <th>Vecteur</th>
                 <th>Statut</th>
-                <th>Description</th>
+                <th>Description OK</th>
+                <th>Description NOK</th>
                 <th></th>
             </tr>
             <?php foreach ($vecteurs as $vecteur) { ?>
@@ -88,9 +95,14 @@ try {
                     <td><?php echo $vecteur['vecteur'] ?></td>
                     <td><?php echo $vecteur['statut'] ?></td>
                     <?php if ($vecteur['validable']) { ?>
-                        <td><textarea id="text_area_<?php echo $vecteur['id']; ?>"></textarea></td>
+                        <td><textarea id="text_area_ok_<?php echo $vecteur['id']; ?>"></textarea></td>
                     <?php } else { ?>
-                        <td><?php echo $vecteur['description'] ?></td>
+                        <td><?php echo $vecteur['description_ok'] ?></td>
+                    <?php } ?>
+                    <?php if ($vecteur['validable']) { ?>
+                        <td><textarea id="text_area_nok_<?php echo $vecteur['id']; ?>"></textarea></td>
+                    <?php } else { ?>
+                        <td><?php echo $vecteur['description_nok'] ?></td>
                     <?php } ?>
                     <?php if ($vecteur['validable']) { ?>
                         <td><input class="valider" type=button value="Valider" id="<?php echo $vecteur['id']; ?>"/></td>
