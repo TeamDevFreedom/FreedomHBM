@@ -22,7 +22,7 @@ var ANIM_CODE_ANESTHESIE = {code :"soins_anesthesie", duration: "2000"};
 var ANIM_CODE_SPERMOGRAMME = {code :"spermogramme", duration: "2000"};
 var ANIM_CODE_TEST_GROSSESSE = {code :"test_grossesse", duration: "2000"};
 var ANIM_CODE_PRELEVEMENT_ADN = {code :"prelevement_adn", duration: "2000"};
-var ANIM_CODE_ADMINISTRATION_VECTEUR = {code :"prelevement_adn", duration: "2000"};
+var ANIM_CODE_ADMINISTRATION_VECTEUR = {code :"admin_vecteur", duration: "2000"};
 
 function navigate(url){
     window.location.href = url;

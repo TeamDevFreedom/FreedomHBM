@@ -4,12 +4,8 @@ require_once '../controllers/check_login.php';
 require_once '../db.php';
 ?>
 <script>
-    var administrerVecteurCallback = function () {
-        navigateAnimationNoResult(ANIM_CODE_ADMINISTRATION_VECTEUR);
-    };
     var administrerHandler = function (event) {
-        var input = {id: event.target.id};
-        $.post('/ajax/ajax_administrer_vecteur.php', input, administrerVecteurCallback);
+        navigateAnimation("administration_vecteur_resultat.php?id=" + event.target.id, ANIM_CODE_ADMINISTRATION_VECTEUR);
     };
     var documentReadyHandler = function () {
         $('.bt_admin_vecteur').click(administrerHandler);
@@ -22,11 +18,10 @@ require_once '../db.php';
 </script>
 <?php
 $patient_id = $_SESSION['patient_rfid'];
-//On vérifie qu'il existe un vecteur validé pour le patient courant
 $has_vecteur = false;
 $vecteurs = array();
 try {
-    $query = $db->prepare("select * from vecteur where rfid = ? order by id desc");
+    $query = $db->prepare("select * from vecteur order by id desc");
     $query->execute(array($patient_id));
     if (!empty($query->rowCount())) {
         $has_vecteur = true;
