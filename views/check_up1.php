@@ -5,7 +5,7 @@ require_once '../controllers/check_login.php';
 <script>
     var documentReadyHandler = function () {
         $('#calme').click(function () {
-            navigateAnimation('check_up2.php?etat=calme', ANIM_CODE_CHECK_UP);
+            navigateAnimation('check_up2.php?etat=calme', ANIM_CODE_CHECK_UP_CALME);
         });
         $('#agite').click(function () {
             navigateAnimation('check_up2.php?etat=agite', ANIM_CODE_CHECK_UP_AGITE);
